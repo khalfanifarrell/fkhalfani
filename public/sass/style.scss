@@ -1749,3 +1749,157 @@ margin-left: -20px;
 		opacity: 0;
 	}
 }
+
+// Tooltip
+[data-tooltip] {
+	position: relative;
+	&:before,
+	&:after {
+        opacity: 0;
+        position: absolute;
+        left: 50%;
+        backface-visibility: hidden
+	}
+	&:before {
+        border-style: solid;
+        border-top-width: 4px;
+        border-right-width: 4px;
+        border-bottom-width: 4px;
+        border-left-width: 4px;
+        border-bottom-width: 0;
+        content: '';
+        top: -2px;
+        width: 0;
+        height: 0;
+        transform: translate(-50%, calc(-50% - 6px));
+        transition: opacity .1s cubic-bezier(.73, .01, 0, 1) 0s, transform .6s cubic-bezier(.73, .01, 0, 1) 0s, -webkit-transform .6s cubic-bezier(.73, .01, 0, 1) 0s;
+        z-index: 110000
+	}
+	&:after {
+        content: attr(data-tooltip);
+        text-align: center;
+        padding: 5px 10px 5px;
+        font-size: 12px;
+        border-radius: 8px;
+        color: $brand-white;
+        transition: opacity .3s cubic-bezier(.73, .01, 0, 1), transform .3s cubic-bezier(.73, .01, 0, 1), -webkit-transform .3s cubic-bezier(.73, .01, 0, 1);
+        pointer-events: none;
+        z-index: 999;
+        white-space: nowrap;
+        bottom: 100%;
+        transform: translate(-50%, 12px);
+        max-width: 320px;
+        text-overflow: ellipsis;
+        overflow: hidden
+	}
+}
+
+[data-tooltip]:after {
+    background: $brand-black;
+}
+
+[data-tooltip]:before {
+    border-top-color: $brand-black;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    border-left-color: transparent
+}
+
+[data-tooltip][data-tooltip-conf*=right]:before {
+    border-top-color: transparent;
+    border-right-color: $brand-color-1;
+    border-bottom-color: transparent;
+    border-left-color: transparent
+}
+
+[data-tooltip] {
+    &:focus,
+    &:hover {
+        &:before,
+        &:after {
+            opacity: 1;
+        }
+	}
+	&:focus,
+	&:hover {
+        &:before {
+            transition: opacity .1s cubic-bezier(.73, .01, 0, 1) .1s, transform .6s cubic-bezier(.73, .01, 0, 1) .1s, -webkit-transform .6s cubic-bezier(.73, .01, 0, 1) .1s;
+            transform: translate(-50%, calc(-50% - 2px));
+        }
+        &:after {
+            transform: translate(-50%, -6px);
+        }
+    }
+}
+
+[data-tooltip][data-tooltip-conf*=right]:before {
+    border-style: solid;
+    border-top-width: 4px;
+    border-right-width: 4px;
+    border-bottom-width: 4px;
+    border-left-width: 4px;
+    border-left-width: 0;
+    left: auto;
+    right: -6px;
+    top: 50%;
+    transform: translate(calc(-50% + 7px), -50%)
+}
+
+[data-tooltip][data-tooltip-conf*=right]:after {
+	top: 50%;
+	left: 100%;
+	bottom: auto;
+	-webkit-transform: translate(-12px, -50%);
+	transform: translate(-12px, -50%)
+}
+
+[data-tooltip][data-tooltip-conf*=right]:focus:before,
+[data-tooltip][data-tooltip-conf*=right]:hover:before {
+	-webkit-transform: translate(calc(-50% + 3px), -50%);
+	transform: translate(calc(-50% + 3px), -50%)
+}
+
+[data-tooltip][data-tooltip-conf*=right]:focus:after,
+[data-tooltip][data-tooltip-conf*=right]:hover:after {
+	-webkit-transform: translate(7px, -50%);
+	transform: translate(7px, -50%)
+}
+
+[data-tooltip][data-tooltip-conf*=info]:after {
+    background: $brand-color-1;
+}
+
+[data-tooltip][data-tooltip-conf*=info]:before {
+	border-top-color: $brand-color-1;
+	border-right-color: transparent;
+	border-bottom-color: transparent;
+    border-left-color: transparent
+}
+
+[data-tooltip][data-tooltip-conf*=info][data-tooltip-conf*=right]:before {
+	border-top-color: transparent;
+	border-right-color: $brand-color-1;
+	border-bottom-color: transparent;
+	border-left-color: transparent
+}
+
+[data-tooltip][data-tooltip-conf*=info][data-tooltip-conf*=bottom]:before {
+	border-top-color: transparent;
+	border-right-color: transparent;
+	border-bottom-color: $brand-color-1;
+	border-left-color: transparent
+}
+
+[data-tooltip][data-tooltip-conf*=info][data-tooltip-conf*=left]:before {
+	border-top-color: transparent;
+	border-right-color: transparent;
+	border-bottom-color: transparent;
+	border-left-color: $brand-color-1;
+}
+
+[data-tooltip][data-tooltip=''] {
+	&:after,
+	&:before {
+        display: none
+	}
+}
