@@ -38,12 +38,16 @@
         <!-- Flexslider  -->
         <link rel="stylesheet" href="css/flexslider.css">
         <!-- Flaticons  -->
-        <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
+        <!-- <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css"> -->
         <!-- Owl Carousel -->
         <link rel="stylesheet" href="css/owl.carousel.min.css">
         <link rel="stylesheet" href="css/owl.theme.default.min.css">
         <!-- Theme style  -->
         <link rel="stylesheet" href="css/style.css">
+
+        <!-- Reliably defer loading of non-critical CSS with loadCSS -->
+        <link rel="preload" href="fonts/flaticon/font/flaticon.css" as="style" onload="this.onload=null; this.rel='stylesheet'">
+        <noscript><link rel=“stylesheet” href="fonts/flaticon/font/flaticon.css" ></noscript>
 
         <!-- Modernizr JS -->
         <script src="js/modernizr-2.6.2.min.js"></script>
